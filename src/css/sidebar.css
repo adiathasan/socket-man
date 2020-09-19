@@ -1,0 +1,87 @@
+.sidebar {
+  background-color: var(--slack-color);
+  max-width: 210px;
+  height: 100vh;
+  color: white;
+}
+
+.sidebar__header {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 0.8rem;
+  border-bottom: 0.00001rem solid #afacac4d;
+}
+
+.sidebar__header:hover {
+  background-color: #250425d3;
+  opacity: 0.88;
+}
+
+.sidebar__header > h2 {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.sidebar .MuiSvgIcon-root {
+  cursor: pointer;
+}
+
+.sidebar__header .MuiSvgIcon-root:last-child {
+  transform: scale(1.2);
+  background-color: white;
+  color: #501653;
+  border-radius: 999px;
+  padding: 0.3rem;
+}
+
+.sidebar__body {
+  padding: 1rem 0.7rem 0 0.7rem;
+  color: #b9b8b6;
+}
+
+.sidebar__bodyBrowse {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.sidebar__bodyBrowse > h3 {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.sidebar__bodyChannels {
+  margin-top: 0.4rem;
+}
+
+.sidebar__bodyChannelsChannel {
+  padding: 0.3rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.sidebar__bodyChannelsChannel:hover {
+  background-color: #250425d3;
+  opacity: 0.88;
+}
+
+.sidebar__bodyChannelsChannel > span {
+  padding: 0.1rem 0.4rem;
+  background-color: #72217a57;
+  border-radius: 4px;
+  margin-right: 0.2rem;
+}
+.sidebar__bodyChannelsChannel > h5 {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+@media (max-width: 440px) {
+  .sidebar {
+    display: none;
+  }
+}

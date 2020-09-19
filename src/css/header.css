@@ -1,0 +1,51 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #310b31;
+  color: white;
+  border-bottom: 0.00001rem solid #a19f9f4d;
+}
+
+.header__left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.header__search {
+  display: flex;
+  margin: 0 1rem;
+  background-color: var(--slack-color);
+  border: 1px solid rgb(150, 147, 147);
+  border-radius: 4px;
+  color: rgb(150, 148, 146);
+  width: 38vw;
+}
+
+.header__search > input {
+  color: white;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  padding: 0 0.6rem;
+
+  outline: none;
+}
+.header__right {
+  flex: 0.5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.avatar {
+  transform: scale(0.7);
+  margin-right: 0.5rem;
+}
+
+.header .MuiSvgIcon-root {
+  transform: scale(0.8);
+  cursor: pointer;
+}
