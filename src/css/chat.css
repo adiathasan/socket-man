@@ -1,0 +1,73 @@
+.chat {
+  width: calc(100% - 200px);
+  overflow-y: scroll;
+}
+
+.chat__header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 0.0001rem solid #ac9f9fda;
+  padding: 0.75rem 1.4rem;
+}
+
+.chat__headerLeft > h5 {
+  display: flex;
+  align-items: center;
+}
+
+.chat__headerLeft > h6 {
+  font-weight: 400;
+  color: rgb(131, 131, 128);
+  cursor: pointer;
+}
+
+.chat__headerLeft > h6:hover {
+  color: rgb(62, 90, 167);
+}
+
+.chat__headerLeft .MuiSvgIcon-root {
+  transform: scale(0.7);
+  color: rgb(99, 97, 96);
+  cursor: pointer;
+}
+
+.chat__headerRight {
+  justify-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat__headerRight > h3 {
+  font-size: large;
+  font-weight: 400;
+  cursor: pointer;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  margin-right: 0.4rem;
+  margin-left: -0.7rem;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.chat__headerRight > h3:hover {
+  background-color: #72217a57;
+}
+
+.chat__headerRight > .MuiSvgIcon-root {
+  transform: scale(1.4);
+  margin: 0 0.4rem;
+  color: #444444f8;
+  cursor: pointer;
+  padding: 0.3rem;
+}
+
+.chat__headerRight > .MuiSvgIcon-root:hover {
+  background-color: #80488557;
+  border-radius: 4px;
+}
+
+@media (max-width: 440px) {
+  .chat {
+    width: 100%;
+  }
+}

@@ -1,6 +1,6 @@
 .sidebar {
   background-color: var(--slack-color);
-  max-width: 210px;
+  width: 200px;
   height: 100vh;
   color: white;
 }
