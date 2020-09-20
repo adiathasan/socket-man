@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/sidebar.css";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import EditIcon from "@material-ui/icons/Edit";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import SidebarBody from "./SidebarBody";
+import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 
 function SideBar() {
+  const [openChannels, setOpenChannels] = useState(false);
   return (
     <div className="sidebar">
       <div className="sidebar__header">
@@ -14,8 +16,14 @@ function SideBar() {
         <EditIcon />
       </div>
       <SidebarBody title={"Browse Slack"} Icon={MoreVertOutlinedIcon} />
-      <SidebarBody title={"Channels"} Icon={ArrowDropDownIcon} channel />
-      <SidebarBody title={"Direct messages"} Icon={ArrowDropDownIcon} />
+      <SidebarBody
+        title={"Channels"}
+        Icon={openChannels ? ArrowDropDownIcon : ArrowRightIcon}
+        channel
+        openChannels={openChannels}
+        setOpenChannels={setOpenChannels}
+      />
+      <SidebarBody title={"Direct messages"} Icon={ArrowRightIcon} />
     </div>
   );
 }

@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from "react";
 import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
 import firestore from "../config/firebaseConfig";
+import Modal from "./Modal";
+import { useHistory } from "react-router-dom";
 
-function SidebarBody({ title, Icon, channel }) {
+function SidebarBody({ title, Icon, channel, openChannels, setOpenChannels }) {
+  const [popup, setPopup] = useState(false);
+  const [active, setActive] = useState(null);
   const [_channel, setChannel] = useState([]);
+
+  const history = useHistory();
+
+  const handleChannel = (id) => {
+    setActive(id);
+    history.push("/room/" + id);
+  };
 
   useEffect(() => {
     firestore.collection("rooms").onSnapshot((snapshot) => {
@@ -18,24 +29,36 @@ function SidebarBody({ title, Icon, channel }) {
   }, []);
   return (
     <div className="sidebar__body">
-      <div className="sidebar__bodyBrowse">
+      <div
+        className="sidebar__bodyBrowse"
+        onClick={() => channel && setOpenChannels(!openChannels)}
+      >
         {Icon && <Icon />}
         <h3>{title}</h3>
         {channel && <AddOutlinedIcon style={{ marginLeft: "auto" }} />}
       </div>
 
-      {channel && (
+      {channel && openChannels && (
         <div className="sidebar__bodyChannels">
           {_channel?.map((channel) => (
-            <div className="sidebar__bodyChannelsChannel" key={channel.room_id}>
+            <div
+              className={`sidebar__bodyChannelsChannel
+               ${active === channel.room_id ? "active" : ""}`}
+              onClick={() => handleChannel(channel.room_id)}
+              key={channel.room_id}
+            >
               <span>#</span> <h5>{channel.room_name}</h5>
             </div>
           ))}
-          <div className="sidebar__bodyChannelsChannel">
+          <div
+            className="sidebar__bodyChannelsChannel"
+            onClick={() => setPopup(!popup)}
+          >
             <span>+</span> <h5>Add Channel</h5>
           </div>
         </div>
       )}
+      <Modal open={popup} setOpen={setPopup} />
     </div>
   );
 }

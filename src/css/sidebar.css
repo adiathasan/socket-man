@@ -69,6 +69,19 @@
   opacity: 0.88;
 }
 
+.active {
+  background: rgba(2, 0, 36, 0.281);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 0) 0%,
+    rgb(51, 51, 231) 48%,
+    rgba(3, 1, 43, 0) 100%,
+    rgb(9, 9, 121) 100%,
+    rgb(0, 213, 255) 100%
+  );
+  color: white;
+}
+
 .sidebar__bodyChannelsChannel > span {
   padding: 0.1rem 0.4rem;
   background-color: #72217a57;
@@ -78,6 +91,36 @@
 .sidebar__bodyChannelsChannel > h5 {
   font-size: 0.9rem;
   font-weight: 400;
+}
+
+.channel__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.channel__form > input {
+  padding: 0.5rem 0.9rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  color: #501653;
+  border-radius: 4px;
+  border: 0.0002rem solid var(--slack-color);
+}
+
+.channel__form > button {
+  transition: 0.2s ease-in-out;
+  border-radius: 4px;
+  cursor: pointer;
+  border: none;
+  padding: 0.5rem 1rem;
+  color: aliceblue;
+  background-color: var(--slack-color);
+}
+
+.channel__form > button:hover {
+  transform: scale(1.1);
+  opacity: 0.95;
 }
 
 @media (max-width: 440px) {
