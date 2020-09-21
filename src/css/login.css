@@ -42,3 +42,11 @@
 .login__container > button:hover {
   background-color: rgb(123, 201, 247);
 }
+
+.login__message {
+  border-radius: 6px;
+  padding: 0.3rem 0.5rem;
+  margin-top: -1rem;
+  margin-bottom: 0.5rem;
+  background-color: rgba(255, 0, 43, 0.452);
+}

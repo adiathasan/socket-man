@@ -7,6 +7,7 @@ import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import firestore from "../config/firebaseConfig";
 import Message from "./Message";
+import ChatInput from "./ChatInput";
 
 function Chat() {
   const { id } = useParams();
@@ -39,8 +40,6 @@ function Chat() {
     }
   }, [id]);
 
-  console.log(roomMessages);
-
   return (
     <div className="chat">
       <div className="chat__header">
@@ -59,9 +58,16 @@ function Chat() {
         </div>
       </div>
       <div className="chat__messages">
-        {roomMessages?.map((message) => (
-          <Message _message={message} key={message.message_id} />
+        {roomMessages?.map((message, i) => (
+          <Message
+            _message={message}
+            key={message.message_id}
+            _id={i === roomMessages?.length - 1 && message.message_id}
+          />
         ))}
+      </div>
+      <div className="chat__input">
+        <ChatInput name={roomDetails?.room} id={id} />
       </div>
     </div>
   );

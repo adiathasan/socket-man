@@ -6,7 +6,7 @@ import { useContextValue } from "../data/contextApi";
 
 function Login() {
   const { data, dispatch } = useContextValue();
-  const [err, setErr] = useState(null);
+  const [err, setErr] = useState({ message: null });
   const handleSignIn = (e) => {
     auth
       .signInWithPopup(provider)
@@ -18,7 +18,7 @@ function Login() {
         });
       })
       .catch((err) => {
-        setErr(err.message);
+        setErr({ message: err.message });
       });
   };
   useEffect(() => {
@@ -27,6 +27,7 @@ function Login() {
   return (
     <div className="login">
       <div className="login__container">
+        <div className="login__message">{err?.message}</div>
         <img
           src="https://cormullion.github.io/assets/images/slackmojif/slackanimation.gif"
           alt=""

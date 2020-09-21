@@ -65,18 +65,34 @@
   border-radius: 4px;
 }
 
+::-webkit-scrollbar {
+  behavior: bottom;
+  width: 5px;
+  border-radius: 6px; /* Remove scrollbar space */
+  background: rgba(
+    106,
+    18,
+    116,
+    0.404
+  ); /* Optional: just make scrollbar invisible */
+}
+
 .chat__messages {
   overflow-y: scroll;
+  overflow-x: hidden;
   padding: 0 1rem;
-  height: 100vh;
+  height: 70vh;
 }
 
 .message {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   padding: 1.5rem 0;
   border-bottom: 0.0002rem solid hsla(240, 5%, 76%, 0.39);
+}
+.ownMessage {
+  justify-content: flex-end;
 }
 
 .message__info {
@@ -94,19 +110,52 @@
   margin-left: 0.6rem;
 }
 
-.message__info > p {
+.message__info p {
   margin-top: 0.02rem;
   font-size: 0.9rem;
 }
 
+.message__text {
+  max-width: 220px;
+  object-fit: contain;
+  overflow: hidden;
+}
+
 .message > img {
   object-fit: contain;
-  width: 40px;
-  border-radius: 4px;
+  width: 30px;
+  border-radius: 999px;
+}
+
+.chatInput {
+  position: fixed;
+  bottom: 0;
+  width: calc(100vw - 200px);
+  padding: 1.5rem 1rem;
+  z-index: 100;
+  background-color: white;
+}
+
+.chatInput > form {
+  display: flex;
+}
+
+.chatInput button {
+  background-color: rgb(227, 182, 233);
+  border-radius: 0;
+}
+
+.chatInput input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  outline: none;
 }
 
 @media (max-width: 440px) {
   .chat {
     width: 100%;
+  }
+  .chatInput {
+    width: 98%;
   }
 }
