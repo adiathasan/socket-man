@@ -4,6 +4,7 @@
   justify-content: space-between;
   background-color: #310b31;
   color: white;
+  z-index: 100;
   border-bottom: 0.00001rem solid #a19f9f4d;
 }
 
@@ -48,4 +49,30 @@
 .header .MuiSvgIcon-root {
   transform: scale(0.8);
   cursor: pointer;
+}
+
+.header__right > button {
+  color: white;
+}
+
+.header__right > button .MuiSvgIcon-root {
+  color: white;
+  transform: scale(1);
+}
+
+.header__right > button:hover {
+  background-color: rgb(141, 12, 119);
+}
+
+.header__left > button {
+  padding: -1rem;
+}
+
+.header__left > button .MuiSvgIcon-root {
+  color: white;
+  transform: scale(1);
+}
+
+.header__left > button:hover {
+  background-color: rgb(141, 12, 119);
 }

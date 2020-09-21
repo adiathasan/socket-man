@@ -1,0 +1,44 @@
+.welcome {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 95vh;
+  width: 100vw;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 1) 24%,
+    rgba(255, 208, 255, 1) 100%
+  );
+}
+
+.welcome > h1 {
+  margin-top: 0.0002rem;
+  font-weight: 500;
+  color: #350b4d;
+  background-color: rgb(239, 225, 243);
+  padding: 3rem 8rem;
+  border-radius: 6px;
+  font-size: 1.4rem;
+  box-shadow: 0 2px 10px -4px rgba(0, 0, 0, 0.514);
+}
+
+.svg {
+  cursor: pointer;
+  background-color: rgb(240, 134, 167);
+  transform: scale(1.4);
+  padding: 0.2rem;
+  border-radius: 6px;
+  transition: all 1s ease-in-out;
+}
+
+.svg:hover {
+  transform: scale(1.5);
+}
+
+.welcome span {
+  background-color: rgba(231, 41, 199, 0.178);
+  color: black;
+  padding: 0.2rem 0.3rem;
+  border-radius: 6px;
+}

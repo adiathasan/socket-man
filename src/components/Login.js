@@ -12,10 +12,10 @@ function Login() {
       .signInWithPopup(provider)
       .then((result) => {
         console.log(result);
-        dispatch({
-          type: "SET_USER",
-          user: result.user,
-        });
+        // dispatch({
+        //   type: "SET_USER",
+        //   user: result.user,
+        // });
       })
       .catch((err) => {
         setErr({ message: err.message });

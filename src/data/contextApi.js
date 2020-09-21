@@ -10,6 +10,11 @@ function ContextApiProvider({ children }) {
           ...state,
           user: action.user,
         };
+      case "USER_SIGNED_IN":
+        return {
+          ...state,
+          user: action.user,
+        };
       default:
         return state;
     }

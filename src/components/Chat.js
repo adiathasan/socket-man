@@ -8,8 +8,9 @@ import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import firestore from "../config/firebaseConfig";
 import Message from "./Message";
 import ChatInput from "./ChatInput";
+import ListIcon from "@material-ui/icons/List";
 
-function Chat() {
+function Chat({ setOpenBar, openBar }) {
   const { id } = useParams();
   const [roomDetails, setRoomDetails] = useState(null);
   const [roomMessages, setRoomMessages] = useState(null);
@@ -45,6 +46,23 @@ function Chat() {
       <div className="chat__header">
         <div className="chat__headerLeft">
           <h5>
+            {openBar ? (
+              ""
+            ) : (
+              <ListIcon
+                onClick={() => setOpenBar(!openBar)}
+                style={{
+                  transform: "scale(1.2)",
+                  color: "white",
+                  marginRight: ".7rem",
+                  backgroundColor: "var(--slack-color)",
+                  borderRadius: "6px",
+                  padding: ".3rem",
+                  marginBottom: ".5rem",
+                  transition: "ease-in .4s",
+                }}
+              />
+            )}
             <strong>#{roomDetails?.room} </strong>
             <StarBorderOutlinedIcon />
           </h5>

@@ -19,10 +19,10 @@ function Message({ _message, _id }) {
       }`}
       id={_id}
     >
-      {user != data?.user?.displayName ? <img src={img_url} alt="" /> : ""}
+      <img src={img_url} alt="" />
       <div className="message__info">
         <h5>
-          {user != data?.user?.displayName ? user : <AndroidIcon />}
+          {user != data?.user?.displayName ? user : ""}
           <span>
             {moment(new Date(timestamp?.toDate())).format("MMM Do YY")}
           </span>

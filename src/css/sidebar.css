@@ -123,8 +123,20 @@
   opacity: 0.95;
 }
 
+.hide {
+  display: none;
+}
+
 @media (max-width: 440px) {
   .sidebar {
+    position: fixed;
+    top: 2.57rem;
+    left: 0;
+    z-index: 100;
+    box-shadow: 10px 0px 20px 5px rgba(0, 0, 0, 0.452);
+  }
+
+  .hide {
     display: none;
   }
 }
