@@ -17,7 +17,7 @@ function Message({ _message, _id }) {
       className={`message ${
         user === data?.user?.displayName ? "ownMessage" : ""
       }`}
-      id={_id}
+      id={_id && _id}
     >
       <img src={img_url} alt="" />
       <div className="message__info">

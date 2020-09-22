@@ -9,10 +9,11 @@ import Login from "./components/Login";
 import { useContextValue } from "./data/contextApi";
 import { auth } from "./config/firebaseConfig";
 
-function App() {
+function App(props) {
   const [openBar, setOpenBar] = useState(false);
   const { data, dispatch } = useContextValue();
   const user = data.user;
+  const [roomUsers, setRoomUsers] = useState(null);
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -31,7 +32,7 @@ function App() {
   return (
     <Router>
       <div className="app">
-        {data.user ? (
+        {user ? (
           <>
             <Header />
             <div className="app__body">
@@ -41,7 +42,12 @@ function App() {
                   <Welcome setOpenBar={setOpenBar} openBar={openBar} />
                 </Route>
                 <Route path="/room/:id">
-                  <Chat setOpenBar={setOpenBar} openBar={openBar} />
+                  <Chat
+                    setRoomUsers={setRoomUsers}
+                    roomUsers={roomUsers}
+                    setOpenBar={setOpenBar}
+                    openBar={openBar}
+                  />
                 </Route>
               </Switch>
             </div>

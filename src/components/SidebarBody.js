@@ -3,11 +3,15 @@ import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
 import firestore from "../config/firebaseConfig";
 import Modal from "./Modal";
 import { useHistory } from "react-router-dom";
+import { useContextValue } from "../data/contextApi";
 
-function SidebarBody({ title, Icon, channel, openChannels, setOpenChannels }) {
+function SidebarBody(props) {
+  const { data } = useContextValue();
+  const { title, Icon, channel, openChannels, setOpenChannels } = props;
   const [popup, setPopup] = useState(false);
   const [active, setActive] = useState(null);
   const [_channel, setChannel] = useState([]);
+  const [roomUsers, setRoomUsers] = useState(null);
 
   const history = useHistory();
 
@@ -17,15 +21,22 @@ function SidebarBody({ title, Icon, channel, openChannels, setOpenChannels }) {
   };
 
   useEffect(() => {
-    firestore.collection("rooms").onSnapshot((snapshot) => {
-      const allChannel = snapshot.docs.map((doc) => {
-        return {
-          room_id: doc.id,
-          room_name: doc.data().room,
-        };
+    firestore
+      .collection("all_users_info")
+      .doc(data.user?.uid)
+      .collection("channels")
+      .onSnapshot((snapshot) => {
+        const allChannel = snapshot.docs.map((doc) => {
+          return {
+            room_id: doc.data().channel_id,
+            room_name: doc.data().channel_name,
+          };
+        });
+        setChannel(allChannel);
+        const url = history.location.pathname.split("/");
+        const _id = url.slice(url.length - 1)[0];
+        setActive(_id);
       });
-      setChannel(allChannel);
-    });
   }, []);
   return (
     <div className="sidebar__body">
@@ -40,6 +51,12 @@ function SidebarBody({ title, Icon, channel, openChannels, setOpenChannels }) {
 
       {channel && openChannels && (
         <div className="sidebar__bodyChannels">
+          <div
+            className="sidebar__bodyChannelsChannel"
+            onClick={() => setPopup(!popup)}
+          >
+            <span>+</span> <h5>Add Channel</h5>
+          </div>
           {_channel?.map((channel) => (
             <div
               className={`sidebar__bodyChannelsChannel
@@ -50,12 +67,6 @@ function SidebarBody({ title, Icon, channel, openChannels, setOpenChannels }) {
               <span>#</span> <h5>{channel.room_name}</h5>
             </div>
           ))}
-          <div
-            className="sidebar__bodyChannelsChannel"
-            onClick={() => setPopup(!popup)}
-          >
-            <span>+</span> <h5>Add Channel</h5>
-          </div>
         </div>
       )}
       <Modal open={popup} setOpen={setPopup} />

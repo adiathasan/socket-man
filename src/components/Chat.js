@@ -2,18 +2,34 @@ import React, { useEffect, useState } from "react";
 import "../css/chat.css";
 import { useParams } from "react-router-dom";
 import StarBorderOutlinedIcon from "@material-ui/icons/StarBorderOutlined";
-import { Avatar } from "@material-ui/core";
-import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
+import QueuePlayNextIcon from "@material-ui/icons/QueuePlayNext";
+// import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import firestore from "../config/firebaseConfig";
 import Message from "./Message";
 import ChatInput from "./ChatInput";
 import ListIcon from "@material-ui/icons/List";
+import { useContextValue } from "../data/contextApi";
 
-function Chat({ setOpenBar, openBar }) {
+function Chat({ setOpenBar, openBar, setRoomUsers, roomUsers }) {
+  const { data } = useContextValue();
   const { id } = useParams();
   const [roomDetails, setRoomDetails] = useState(null);
   const [roomMessages, setRoomMessages] = useState(null);
+  const [channel, setChannel] = useState(null);
+
+  const handleChannel = () => {
+    if (!channel.includes(id)) {
+      firestore
+        .collection("all_users_info")
+        .doc(data.user.uid)
+        .collection("channels")
+        .add({
+          channel_id: id,
+          channel_name: roomDetails?.room,
+        });
+    }
+  };
 
   useEffect(() => {
     if (id) {
@@ -21,6 +37,27 @@ function Chat({ setOpenBar, openBar }) {
         .collection("rooms")
         .doc(id)
         .onSnapshot((snap) => setRoomDetails(snap.data()));
+
+      firestore
+        .collection("rooms")
+        .doc(id)
+        .collection("room_users")
+        .onSnapshot((snap) =>
+          setRoomUsers(
+            snap.docs?.map((doc) => ({
+              room_user_email: doc.data().room_user_email,
+              room_user_name: doc.data().room_user_name,
+            }))
+          )
+        );
+
+      firestore
+        .collection("all_users_info")
+        .doc(data.user.uid)
+        .collection("channels")
+        .onSnapshot((snap) => {
+          setChannel(snap?.docs.map((doc) => doc.data().channel_id));
+        });
 
       firestore
         .collection("rooms")
@@ -69,9 +106,8 @@ function Chat({ setOpenBar, openBar }) {
           <h6>Add a topic</h6>
         </div>
         <div className="chat__headerRight">
-          <Avatar className="avatar" />
-          <h3>1</h3>
-          <PersonAddOutlinedIcon />
+          <QueuePlayNextIcon onClick={handleChannel} />
+          <h3>{roomDetails?.room}</h3>
           <InfoOutlinedIcon />
         </div>
       </div>
@@ -85,7 +121,7 @@ function Chat({ setOpenBar, openBar }) {
         ))}
       </div>
       <div className="chat__input">
-        <ChatInput name={roomDetails?.room} id={id} />
+        <ChatInput name={roomDetails?.room} id={id} roomUsers={roomUsers} />
       </div>
     </div>
   );

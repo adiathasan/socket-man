@@ -1,8 +1,11 @@
 .sidebar {
   background-color: var(--slack-color);
   width: 200px;
-  height: 100vh;
+  height: calc(100vh - 2.5rem);
+  max-height: calc(100vh - 2.5rem);
+  overflow-y: auto;
   color: white;
+  z-index: 100;
 }
 
 .sidebar__header {

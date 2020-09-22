@@ -4,6 +4,7 @@ import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import firestore from "../config/firebaseConfig";
+import { useContextValue } from "../data/contextApi";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -20,8 +21,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TransitionsModal({ open, setOpen }) {
   const classes = useStyles();
-
+  const { data } = useContextValue();
   const [input, setInput] = useState("");
+  const [room_id, setRoom_id] = useState("");
+  const [_user_id, setUser_id] = useState([]);
 
   const handleClose = () => {
     setOpen(false);
@@ -29,14 +32,34 @@ export default function TransitionsModal({ open, setOpen }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input) {
-      firestore.collection("rooms").add({
-        room: input,
-      });
+    if (input && room_id) {
+      firestore
+        .collection("rooms")
+        .add({
+          room: input,
+          room_id,
+          room_created_by: data.user?.email,
+        })
+        .then((data) =>
+          firestore
+            .collection("all_users_info")
+            .doc(_user_id)
+            .collection("channels")
+            .add({
+              channel_name: input,
+              channel_id: data.id,
+            })
+        );
+
       setInput(null);
+      setRoom_id(null);
       setOpen(false);
     }
   };
+
+  useEffect(() => {
+    setUser_id(data.user.uid);
+  }, []);
 
   return (
     <div>
@@ -56,9 +79,18 @@ export default function TransitionsModal({ open, setOpen }) {
           <div className={classes.paper}>
             <form className="channel__form" onSubmit={handleSubmit}>
               <input
+                required
+                placeholder="channel #name"
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
+              />
+              <input
+                required
+                placeholder="channel #id"
+                type="text"
+                value={room_id}
+                onChange={(e) => setRoom_id(e.target.value)}
               />
               <button type="submit">Add Channel</button>
             </form>

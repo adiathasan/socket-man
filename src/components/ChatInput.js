@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@material-ui/core";
 import SendIcon from "@material-ui/icons/Send";
 import { useContextValue } from "../data/contextApi";
@@ -7,8 +7,11 @@ import firebase from "firebase";
 
 function ChatInput({ name, id }) {
   const { data } = useContextValue();
+  const [roomUsers, setRoomUsers] = useState(null);
   const [message, setMessage] = useState("");
+
   const handleSubmit = (e) => {
+    const _room_users = roomUsers?.map((user) => user.user_id);
     e.preventDefault();
     if (message) {
       firestore.collection("rooms").doc(id).collection("messages").add({
@@ -20,6 +23,16 @@ function ChatInput({ name, id }) {
       setMessage("");
     }
   };
+
+  useEffect(() => {
+    firestore.collection("all_users_info").onSnapshot((snap) =>
+      setRoomUsers(
+        snap.docs?.map((doc) => ({
+          user_id: doc.data().user_id,
+        }))
+      )
+    );
+  });
   return (
     <div className="chatInput">
       <form onSubmit={handleSubmit}>

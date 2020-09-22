@@ -1,29 +1,40 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@material-ui/core";
 import "../css/login.css";
-import { auth, provider } from "../config/firebaseConfig";
+import firestore, { auth, provider } from "../config/firebaseConfig";
 import { useContextValue } from "../data/contextApi";
-
+import firebase from "firebase";
 function Login() {
   const { data, dispatch } = useContextValue();
+  const [roomUsers, setRoomUsers] = useState(null);
   const [err, setErr] = useState({ message: null });
   const handleSignIn = (e) => {
+    const array = roomUsers?.map((user) => user.user_id);
     auth
       .signInWithPopup(provider)
       .then((result) => {
-        console.log(result);
-        // dispatch({
-        //   type: "SET_USER",
-        //   user: result.user,
-        // });
+        if (!array.includes(result.user.uid)) {
+          firestore.collection("all_users_info").doc(result.user.uid).set({
+            user_name: result.user.displayName,
+            user_email: result.user.email,
+            user_id: result.user.uid,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          });
+        }
       })
       .catch((err) => {
         setErr({ message: err.message });
       });
   };
   useEffect(() => {
-    console.log(data);
-  }, [data]);
+    firestore.collection("all_users_info").onSnapshot((snap) =>
+      setRoomUsers(
+        snap.docs?.map((doc) => ({
+          user_id: doc.data().user_id,
+        }))
+      )
+    );
+  }, []);
   return (
     <div className="login">
       <div className="login__container">
