@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import "../css/welcome.css";
 import MenuOpenIcon from "@material-ui/icons/MenuOpen";
-
 function Welcome(props) {
   const { setOpenBar, openBar } = props;
+
   useEffect(() => {
     setOpenBar(true);
   }, []);

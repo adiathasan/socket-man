@@ -3,13 +3,14 @@ import "../css/chat.css";
 import { useParams } from "react-router-dom";
 import StarBorderOutlinedIcon from "@material-ui/icons/StarBorderOutlined";
 import QueuePlayNextIcon from "@material-ui/icons/QueuePlayNext";
-// import PersonAddOutlinedIcon from "@material-ui/icons/PersonAddOutlined";
+import ClipboardJS from "clipboard";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import firestore from "../config/firebaseConfig";
 import Message from "./Message";
 import ChatInput from "./ChatInput";
 import ListIcon from "@material-ui/icons/List";
 import { useContextValue } from "../data/contextApi";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 function Chat({ setOpenBar, openBar, setRoomUsers, roomUsers }) {
   const { data } = useContextValue();
@@ -17,6 +18,7 @@ function Chat({ setOpenBar, openBar, setRoomUsers, roomUsers }) {
   const [roomDetails, setRoomDetails] = useState(null);
   const [roomMessages, setRoomMessages] = useState(null);
   const [channel, setChannel] = useState(null);
+  const [roomAddInfo, setRoomAddInfo] = useState(false);
 
   const handleChannel = () => {
     if (!channel.includes(id)) {
@@ -24,11 +26,35 @@ function Chat({ setOpenBar, openBar, setRoomUsers, roomUsers }) {
         .collection("all_users_info")
         .doc(data.user.uid)
         .collection("channels")
-        .add({
+        .doc(id)
+        .set({
           channel_id: id,
           channel_name: roomDetails?.room,
+        })
+        .then((resp) => {
+          setRoomAddInfo(true);
+        });
+    } else {
+      firestore
+        .collection("all_users_info")
+        .doc(data.user.uid)
+        .collection("channels")
+        .doc(id)
+        .delete()
+        .then((resp) => {
+          setRoomAddInfo(false);
         });
     }
+  };
+
+  const handleCopy = (e) => {
+    e.target.innerHTML = "Copied";
+    e.target.style.backgroundColor = "orange";
+    setTimeout(() => {
+      document.querySelector(".btn").innerHTML = "Copy";
+      document.querySelector(".btn").style.backgroundColor = "rgb(22, 79, 145)";
+    }, 2000);
+    new ClipboardJS(".btn");
   };
 
   useEffect(() => {
@@ -56,7 +82,12 @@ function Chat({ setOpenBar, openBar, setRoomUsers, roomUsers }) {
         .doc(data.user.uid)
         .collection("channels")
         .onSnapshot((snap) => {
-          setChannel(snap?.docs.map((doc) => doc.data().channel_id));
+          const _channel = snap?.docs.map((doc) => doc.data().channel_id);
+          const _mainId = snap?.docs.map((doc) => doc.id);
+          setChannel(_channel);
+          if (_mainId?.includes(id)) {
+            setRoomAddInfo(true);
+          }
         });
 
       firestore
@@ -106,10 +137,24 @@ function Chat({ setOpenBar, openBar, setRoomUsers, roomUsers }) {
           <h6>Add a topic</h6>
         </div>
         <div className="chat__headerRight">
-          <QueuePlayNextIcon onClick={handleChannel} />
-          <h3>{roomDetails?.room}</h3>
+          {!roomAddInfo ? (
+            <QueuePlayNextIcon onClick={handleChannel} />
+          ) : (
+            <DeleteForeverIcon onClick={handleChannel} />
+          )}
+          <h3>channel</h3>
           <InfoOutlinedIcon />
         </div>
+      </div>
+      <div className="chat__copyText">
+        <p>{`...domain/room/${id}`}</p>
+        <button
+          onClick={handleCopy}
+          className="btn"
+          data-clipboard-text={`slack-clone-ad.web.app/room/${id}`}
+        >
+          Copy
+        </button>
       </div>
       <div className="chat__messages">
         {roomMessages?.map((message, i) => (

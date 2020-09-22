@@ -15,11 +15,16 @@ function ContextApiProvider({ children }) {
           ...state,
           user: action.user,
         };
+      case "CHANNELS_ADDED":
+        return {
+          ...state,
+          channels: action.channels,
+        };
       default:
         return state;
     }
   };
-  const [data, dispatch] = useReducer(reducer, { user: null });
+  const [data, dispatch] = useReducer(reducer, { user: null, channels: null });
 
   return (
     <context.Provider value={{ dispatch, data }}>{children}</context.Provider>

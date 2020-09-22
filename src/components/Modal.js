@@ -45,7 +45,8 @@ export default function TransitionsModal({ open, setOpen }) {
             .collection("all_users_info")
             .doc(_user_id)
             .collection("channels")
-            .add({
+            .doc(data.id)
+            .set({
               channel_name: input,
               channel_id: data.id,
             })

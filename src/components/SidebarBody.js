@@ -6,12 +6,11 @@ import { useHistory } from "react-router-dom";
 import { useContextValue } from "../data/contextApi";
 
 function SidebarBody(props) {
-  const { data } = useContextValue();
+  const { data, dispatch } = useContextValue();
   const { title, Icon, channel, openChannels, setOpenChannels } = props;
   const [popup, setPopup] = useState(false);
   const [active, setActive] = useState(null);
   const [_channel, setChannel] = useState([]);
-  const [roomUsers, setRoomUsers] = useState(null);
 
   const history = useHistory();
 
@@ -33,6 +32,11 @@ function SidebarBody(props) {
           };
         });
         setChannel(allChannel);
+        dispatch({
+          type: "CHANNELS_ADDED",
+          channels: [...allChannel],
+        });
+
         const url = history.location.pathname.split("/");
         const _id = url.slice(url.length - 1)[0];
         setActive(_id);
