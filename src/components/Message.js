@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import moment from "moment";
 import { useContextValue } from "../data/contextApi";
-import AndroidIcon from "@material-ui/icons/Android";
 
 function Message({ _message, _id }) {
   const { data } = useContextValue();

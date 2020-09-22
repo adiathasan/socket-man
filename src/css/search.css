@@ -1,7 +1,8 @@
-.welcome {
+.search {
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
   height: 95vh;
   width: 100vw;
   background: rgb(255, 255, 255);
@@ -17,15 +18,17 @@
   object-fit: contain;
 }
 
-.welcome > h1 {
+.search > div {
+  width: 800px;
+  max-width: 100vw;
   margin-top: 0.0002rem;
   font-weight: 500;
   color: #e6e0e9;
   background-color: rgb(48, 107, 134);
-  padding: 3rem 8rem;
-  border-radius: 6px;
+  padding: 1.2rem 2rem;
+  border-radius: 2px;
   font-size: 1.4rem;
-  box-shadow: 0 2px 20px -1px rgba(0, 0, 0, 0.514);
+  box-shadow: 0 0px 20px -1px rgba(0, 0, 0, 0.514);
 }
 
 .svg {
@@ -41,9 +44,26 @@
   transform: scale(1.5);
 }
 
-.welcome span {
+.search span {
   background-color: rgba(231, 41, 199, 0.178);
   color: black;
   padding: 0.2rem 0.3rem;
   border-radius: 6px;
+}
+
+.search__rooms a {
+  text-decoration: none;
+}
+
+.search__rooms a > h4 {
+  font-weight: 400;
+  font-size: 1.3irem;
+  color: #1ae7d6;
+  transition: ease-in 0.3s;
+}
+
+.search__rooms a > h4:hover {
+  text-decoration: underline;
+  color: rgb(3, 10, 22);
+  transform: scale(1.07);
 }

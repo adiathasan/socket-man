@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import AddOutlinedIcon from "@material-ui/icons/AddOutlined";
 import firestore from "../config/firebaseConfig";
 import Modal from "./Modal";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { useContextValue } from "../data/contextApi";
 
 function SidebarBody(props) {
+  const datam = useParams();
   const { data, dispatch } = useContextValue();
   const { title, Icon, channel, openChannels, setOpenChannels } = props;
   const [popup, setPopup] = useState(false);
@@ -41,6 +42,7 @@ function SidebarBody(props) {
         const _id = url.slice(url.length - 1)[0];
         setActive(_id);
       });
+    console.log(datam);
   }, []);
   return (
     <div className="sidebar__body">

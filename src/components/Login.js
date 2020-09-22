@@ -27,6 +27,7 @@ function Login() {
       });
   };
   useEffect(() => {
+    document.title = "Socket Google-Sign-In";
     firestore.collection("all_users_info").onSnapshot((snap) =>
       setRoomUsers(
         snap.docs?.map((doc) => ({
@@ -43,7 +44,7 @@ function Login() {
           src="https://cormullion.github.io/assets/images/slackmojif/slackanimation.gif"
           alt=""
         />
-        <h1>Kashem Network</h1>
+        <h1>Socket-Man</h1>
         <Button onClick={handleSignIn}>Sign In With Google</Button>
       </div>
     </div>

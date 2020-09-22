@@ -5,6 +5,7 @@ function Welcome(props) {
   const { setOpenBar, openBar } = props;
 
   useEffect(() => {
+    document.title = "Socket";
     setOpenBar(true);
   }, []);
   return (
@@ -15,7 +16,7 @@ function Welcome(props) {
         ) : (
           ""
         )}{" "}
-        Kashem Network <span> #Home</span>
+        Soket-Man <span> #Home</span>
       </h1>
     </div>
   );

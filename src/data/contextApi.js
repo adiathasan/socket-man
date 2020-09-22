@@ -20,11 +20,21 @@ function ContextApiProvider({ children }) {
           ...state,
           channels: action.channels,
         };
+      case "SEARCH_ADDED":
+        console.log(action.search);
+        return {
+          ...state,
+          search: action.search,
+        };
       default:
         return state;
     }
   };
-  const [data, dispatch] = useReducer(reducer, { user: null, channels: null });
+  const [data, dispatch] = useReducer(reducer, {
+    user: null,
+    channels: null,
+    search: null,
+  });
 
   return (
     <context.Provider value={{ dispatch, data }}>{children}</context.Provider>

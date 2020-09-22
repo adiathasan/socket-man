@@ -28,7 +28,7 @@
 .header__search > input {
   color: white;
   width: 100%;
-  background-color: transparent;
+  background-color: rgba(87, 19, 94, 0.342);
   border: none;
   padding: 0 0.6rem;
 

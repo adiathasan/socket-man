@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 0.0001rem solid #ac9f9fda;
-  padding: 1.16rem 1.4rem;
+  padding: 0.79rem 1.4rem;
 }
 
 .chat__headerLeft > h5 {
@@ -17,7 +17,6 @@
 .chat__headerLeft > h6 {
   font-weight: 400;
   color: rgb(131, 131, 128);
-  cursor: pointer;
 }
 
 .chat__headerLeft > h6:hover {
@@ -99,7 +98,7 @@
   overflow-y: scroll;
   overflow-x: hidden;
   padding: 0 1rem;
-  height: 61.5vh;
+  height: 61vh;
 }
 
 .message {

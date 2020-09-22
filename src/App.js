@@ -8,12 +8,14 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./components/Login";
 import { useContextValue } from "./data/contextApi";
 import { auth } from "./config/firebaseConfig";
+import Search from "./components/Search";
 
 function App(props) {
   const [openBar, setOpenBar] = useState(false);
   const { data, dispatch } = useContextValue();
   const user = data.user;
   const [roomUsers, setRoomUsers] = useState(null);
+  const [search, setSearch] = useState(null);
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -34,12 +36,19 @@ function App(props) {
       <div className="app">
         {user ? (
           <>
-            <Header />
+            <Header setSearch={setSearch} />
             <div className="app__body">
               <SideBar setOpenBar={setOpenBar} openBar={openBar} />
               <Switch>
                 <Route path="/" exact>
                   <Welcome setOpenBar={setOpenBar} openBar={openBar} />
+                </Route>
+                <Route path="/search" exact>
+                  <Search
+                    setOpenBar={setOpenBar}
+                    openBar={openBar}
+                    search={search}
+                  />
                 </Route>
                 <Route path="/room/:id">
                   <Chat

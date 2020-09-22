@@ -9,7 +9,6 @@
 }
 
 .sidebar__header {
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -27,16 +26,18 @@
   font-weight: 600;
 }
 
-.sidebar .MuiSvgIcon-root {
-  cursor: pointer;
-}
-
 .sidebar__header .MuiSvgIcon-root:last-child {
   transform: scale(1.2);
   background-color: white;
   color: #501653;
   border-radius: 999px;
   padding: 0.3rem;
+  cursor: pointer;
+  transition: 0.3s ease-in;
+}
+
+.sidebar__header .MuiSvgIcon-root:last-child:hover {
+  transform: scale(1.5);
 }
 
 .sidebar__body {

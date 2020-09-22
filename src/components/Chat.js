@@ -58,6 +58,7 @@ function Chat({ setOpenBar, openBar, setRoomUsers, roomUsers }) {
   };
 
   useEffect(() => {
+    document.title = "Socket | " + id;
     if (id) {
       firestore
         .collection("rooms")
