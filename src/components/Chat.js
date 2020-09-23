@@ -152,7 +152,7 @@ function Chat({ setOpenBar, openBar, setRoomUsers, roomUsers }) {
         <button
           onClick={handleCopy}
           className="btn"
-          data-clipboard-text={`slack-clone-ad.web.app/room/${id}`}
+          data-clipboard-text={`https://slack-clone-ad.web.app/room/${id}`}
         >
           Copy
         </button>

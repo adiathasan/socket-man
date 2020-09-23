@@ -41,7 +41,7 @@ function Login() {
       <div className="login__container">
         <div className="login__message">{err?.message}</div>
         <img
-          src="https://cormullion.github.io/assets/images/slackmojif/slackanimation.gif"
+          src="https://d34u8crftukxnk.cloudfront.net/slackpress/prod/sites/6/LOB-Slack-Connect%402x.gif"
           alt=""
         />
         <h1>Socket-Man</h1>
