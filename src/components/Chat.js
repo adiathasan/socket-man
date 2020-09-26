@@ -104,6 +104,7 @@ function Chat({ setOpenBar, openBar, setRoomUsers, roomUsers }) {
               user: message.data().user,
               img_url: message.data().user_img,
               timestamp: message.data().timestamp,
+              edited: message.data().edited,
             }))
           )
         );
@@ -115,27 +116,10 @@ function Chat({ setOpenBar, openBar, setRoomUsers, roomUsers }) {
       <div className="chat__header">
         <div className="chat__headerLeft">
           <h5>
-            {openBar ? (
-              ""
-            ) : (
-              <ListIcon
-                onClick={() => setOpenBar(!openBar)}
-                style={{
-                  transform: "scale(1.2)",
-                  color: "white",
-                  marginRight: ".7rem",
-                  backgroundColor: "var(--slack-color)",
-                  borderRadius: "6px",
-                  padding: ".3rem",
-                  marginBottom: ".5rem",
-                  transition: "ease-in .4s",
-                }}
-              />
-            )}
+            {openBar ? "" : <ListIcon onClick={() => setOpenBar(!openBar)} />}
             <strong>#{roomDetails?.room} </strong>
             <StarBorderOutlinedIcon />
           </h5>
-          <h6>Add a topic</h6>
         </div>
         <div className="chat__headerRight">
           {!roomAddInfo ? (

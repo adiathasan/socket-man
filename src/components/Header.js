@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../css/header.css";
 import SearchIcon from "@material-ui/icons/Search";
 import { Avatar, Button } from "@material-ui/core";
-import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import { useContextValue } from "../data/contextApi";
 import firestore, { auth } from "../config/firebaseConfig";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";

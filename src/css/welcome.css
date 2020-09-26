@@ -2,8 +2,9 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  height: 95vh;
+  height: 94vh;
   width: 100vw;
+
   background: rgb(255, 255, 255);
   background: linear-gradient(
     0deg,
@@ -18,27 +19,32 @@
 }
 
 .welcome > h1 {
-  margin-top: 0.0002rem;
-  font-weight: 500;
-  color: #e6e0e9;
-  background-color: rgb(99, 11, 87);
+  position: relative;
+  font-weight: 600;
+  width: 100%;
+  color: rgb(224, 195, 231);
+  background-color: rgba(99, 11, 87, 0.596);
   padding: 3rem 8rem;
-  border-radius: 6px;
-  font-size: 1.4rem;
+  /* border-radius: 6px; */
+  font-size: 1.5rem;
+  box-shadow: 0 2px 20px -1px rgba(0, 0, 0, 0.315);
+}
+
+.welcome > h1 > .MuiSvgIcon-root {
+  position: absolute;
+  left: 4rem;
+  top: 3.3rem;
+  cursor: pointer;
+  background-color: rgb(206, 20, 175);
+  transform: scale(1.6);
+  padding: 0.2rem;
+  border-radius: 999px;
+  transition: all 0.3s ease-in;
   box-shadow: 0 2px 20px -1px rgba(0, 0, 0, 0.514);
 }
 
-.svg {
-  cursor: pointer;
-  background-color: rgb(240, 134, 167);
-  transform: scale(1.4);
-  padding: 0.2rem;
-  border-radius: 6px;
-  transition: all 1s ease-in-out;
-}
-
-.svg:hover {
-  transform: scale(1.5);
+.welcome > h1 > .MuiSvgIcon-root:hover {
+  transform: scale(2);
 }
 
 .welcome span {

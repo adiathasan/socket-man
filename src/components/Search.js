@@ -6,9 +6,6 @@ import { Link } from "react-router-dom";
 function Search(props) {
   const { setOpenBar, openBar, search } = props;
 
-  useEffect(() => {
-    console.log(search);
-  });
   return (
     <div className="search">
       <div>

@@ -1,12 +1,13 @@
 .chat {
   width: calc(100%);
+  background-color: rgba(231, 25, 180, 0.123);
 }
 
 .chat__header {
   display: flex;
   justify-content: space-between;
-  border-bottom: 0.0001rem solid #ac9f9fda;
-  padding: 0.79rem 1.4rem;
+  border-bottom: 0.0001rem solid #a00ca0da;
+  padding: 1.2rem 1.4rem;
 }
 
 .chat__headerLeft > h5 {
@@ -14,9 +15,19 @@
   align-items: center;
 }
 
-.chat__headerLeft > h6 {
-  font-weight: 400;
-  color: rgb(131, 131, 128);
+.chat__headerLeft > h5 > .MuiSvgIcon-root:nth-child(1) {
+  cursor: pointer;
+  background-color: #470249;
+  transform: scale(1.5);
+  color: white;
+  padding: 0.2rem;
+  margin-right: 0.8rem;
+  border-radius: 999px;
+  transition: all 0.3s ease-in;
+}
+
+.chat__headerLeft > h5 > .MuiSvgIcon-root:nth-child(1):hover {
+  transform: scale(1.7);
 }
 
 .chat__headerLeft > h6:hover {
@@ -57,16 +68,11 @@
 .chat__headerRight > h3 {
   font-size: small;
   font-weight: 300;
-  cursor: pointer;
   padding: 0.1rem 0.4rem;
   border-radius: 4px;
   margin-right: 0.4rem;
   margin-left: -0.7rem;
   font-family: Georgia, "Times New Roman", Times, serif;
-}
-
-.chat__headerRight > h3:hover {
-  background-color: #72217a57;
 }
 
 .chat__headerRight > .MuiSvgIcon-root {
@@ -106,7 +112,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   padding: 1.5rem 0;
-  border-bottom: 0.0002rem solid hsla(240, 5%, 76%, 0.39);
+  border-bottom: 0.0002rem solid hsla(298, 80%, 60%, 0.39);
 }
 .ownMessage {
   justify-content: flex-end;
@@ -118,6 +124,11 @@
   justify-content: space-between;
   align-items: flex-start;
   margin-left: 0.5rem;
+  background-color: rgba(204, 112, 140, 0.295);
+  padding: 1rem;
+  padding-top: 0.5rem;
+  border-radius: 0 10px 10px 10px;
+  box-shadow: 3px 3px 7px -2px rgba(1, 13, 24, 0.288);
 }
 
 .message__info span {
@@ -144,13 +155,29 @@
   border-radius: 999px;
 }
 
+.avatar {
+  color: rgb(14, 103, 175);
+  transform: scale(0.7);
+  margin-bottom: -0.3rem;
+  cursor: pointer;
+}
+
+.avatar:hover {
+  background-color: #f7db3baf;
+  border-radius: 4px;
+}
+
+.chat__input {
+  width: 100%;
+  background-color: rgb(201, 139, 230);
+}
+
 .chatInput {
   position: fixed;
   bottom: 0;
-  width: calc(100vw - 160px);
+  width: calc(100% - 160px);
   padding: 1.5rem 1rem;
   z-index: 99;
-  background-color: white;
 }
 
 .chatInput > form {
@@ -162,10 +189,16 @@
   border-radius: 0;
 }
 
+.chatInput button:hover {
+  background-color: #fa56bb8a;
+}
+
 .chatInput input {
   width: 100%;
   padding: 1rem 1.2rem;
   outline: none;
+  border: 0.0002rem solid rgba(68, 16, 78, 0.63);
+  background-color: antiquewhite;
 }
 
 @media (max-width: 440px) {

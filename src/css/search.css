@@ -19,29 +19,35 @@
 }
 
 .search > div {
+  position: relative;
   width: 800px;
   max-width: 100vw;
+  margin-bottom: 0.00001rem;
   margin-top: 0.0002rem;
   font-weight: 500;
   color: #e6e0e9;
-  background-color: rgb(99, 11, 87);
+  background-color: rgba(99, 11, 87, 0.541);
   padding: 1.2rem 2rem;
-  border-radius: 2px;
   font-size: 1.4rem;
-  box-shadow: 0 0px 20px -1px rgba(0, 0, 0, 0.514);
+  box-shadow: 0 3px 20px -1px rgba(0, 0, 0, 0.514);
 }
 
 .svg {
+  z-index: 100;
+  position: absolute;
+  left: 4rem;
+  top: 3.6rem;
   cursor: pointer;
-  background-color: rgb(240, 134, 167);
-  transform: scale(1.4);
+  background-color: rgb(206, 20, 175);
+  transform: scale(1.6);
   padding: 0.2rem;
-  border-radius: 6px;
-  transition: all 1s ease-in-out;
+  border-radius: 999px;
+  transition: all 0.3s ease-in;
+  box-shadow: 0 2px 20px -1px rgba(0, 0, 0, 0.514);
 }
 
 .svg:hover {
-  transform: scale(1.5);
+  transform: scale(1.7);
 }
 
 .search span {
@@ -49,6 +55,10 @@
   color: black;
   padding: 0.2rem 0.3rem;
   border-radius: 6px;
+}
+
+.search__rooms {
+  height: 20vh;
 }
 
 .search__rooms a {
@@ -63,7 +73,7 @@
 }
 
 .search__rooms a > h4:hover {
-  text-decoration: underline;
-  color: rgb(3, 10, 22);
+  color: rgb(8, 250, 101);
   transform: scale(1.07);
+  font-size: x-large;
 }

@@ -21,10 +21,19 @@ function ContextApiProvider({ children }) {
           channels: action.channels,
         };
       case "SEARCH_ADDED":
-        console.log(action.search);
         return {
           ...state,
           search: action.search,
+        };
+      case "EDIT_MESSAGE_RECIVED":
+        return {
+          ...state,
+          editMessage: action.editMessage,
+        };
+      case "EDIT_MESSAGE_SENT":
+        return {
+          ...state,
+          editMessage: null,
         };
       default:
         return state;
@@ -34,6 +43,7 @@ function ContextApiProvider({ children }) {
     user: null,
     channels: null,
     search: null,
+    editMessage: null,
   });
 
   return (

@@ -7,11 +7,13 @@ import SidebarBody from "./SidebarBody";
 import ArrowRightIcon from "@material-ui/icons/ArrowRight";
 import MenuOpenIcon from "@material-ui/icons/MenuOpen";
 import PowerIcon from "@material-ui/icons/Power";
+import { motion } from "framer-motion";
+
 function SideBar({ setOpenBar, openBar }) {
   const [openChannels, setOpenChannels] = useState(false);
 
   return (
-    <div className={`sidebar ${!openBar ? "hide" : ""}`}>
+    <motion.div className={`sidebar ${!openBar ? "hide" : ""}`}>
       <div className="sidebar__header">
         <h2>Soket-Man</h2>
         {openBar ? <PowerIcon /> : <EditIcon />}
@@ -26,7 +28,7 @@ function SideBar({ setOpenBar, openBar }) {
         setOpenChannels={setOpenChannels}
       />
       <SidebarBody title={"Direct messages"} Icon={ArrowRightIcon} />
-    </div>
+    </motion.div>
   );
 }
 
